@@ -57,11 +57,20 @@ const personalMovieDB = {
         };
     },
     writeYourGenres: function () {
-        for (let i = 1; i <= 3; i++) {
-            let genre = '';
-            while (genre === '' || genre === null) {
-                genre = prompt(`Ваш любимый жанр под номером ${i}`);
-                personalMovieDB.genres[i - 1] = genre;
+        // for (let i = 1; i <= 3; i++) {
+        //     let genre = '';
+        //     while (genre === '' || genre === null) {
+        //         genre = prompt(`Ваш любимый жанр под номером ${i}`);
+        //         personalMovieDB.genres[i - 1] = genre;
+        //     };
+        // };
+        for (let i = 1; i < 2; i++) {
+            let genre = prompt('Введите ваши любимые жанры через запятую').toLowerCase()=;
+            if (genre === '' || genre == null) {
+                alert('Вы ввели неверное значение, попробуте снова');
+                i--;
+            } else {
+                personalMovieDB.genres = genre.split(', ');
             };
         };
         personalMovieDB.genres.forEach((genreName, index) => { console.log(`Любимый жанр #${index + 1} - это ${genreName}`) });
