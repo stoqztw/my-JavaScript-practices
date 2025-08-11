@@ -2,6 +2,7 @@
 
 const box = document.querySelector('.box');
 const block = document.querySelector('.block');
+const boxes = document.querySelectorAll('.box');
 
 console.log(block);
 
@@ -21,6 +22,6 @@ const userData = {
 	}
 }
 
-userData.sayy?.()
+console.log(boxes[0].closest('.wrapper'));
 
 console.log(userData.skills?.js);
