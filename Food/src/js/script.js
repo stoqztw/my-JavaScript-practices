@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			hours = timer.querySelector('#hours'),
 			minutes = timer.querySelector('#minutes'),
 			seconds = timer.querySelector('#seconds'),
-			timerUpdater = setInterval(updateClock, 1000);
+			timerUpdater = setInterval(updateClock, 1000000000);
 
 		updateClock();
 
@@ -207,4 +207,51 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	window.addEventListener('scroll', showModalByScroll);
+
+	// class
+
+	class MenuCard {
+		constructor(srcImg, alt, subtitle, description, price, parentSelector) {
+			this.srcImg = srcImg;
+			this.alt = alt;
+			this.subtitle = subtitle;
+			this.description = description;
+			this.price = price;
+			this.parent = document.querySelector(parentSelector);
+			this.transfer = 27;
+			this.changeToUAH();
+		}
+
+		changeToUAH() {
+			this.price = this.price * this.transfer;
+		}
+
+		render() {
+			const element = document.createElement('div');
+			element.innerHTML = `	
+			<div class="menu__item">
+        <img src=${this.srcImg} alt=${this.alt}>
+        <h3 class="menu__item-subtitle">${this.subtitle}</h3>
+        <div class="menu__item-descr">${this.description}</div>
+        <div class="menu__item-divider"></div>
+        <div class="menu__item-price">
+					<div class="menu__item-cost">Цена:</div>
+					<div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+				</div>
+      </div>
+			`;
+			this.parent.append(element);
+		}
+	}
+
+	new MenuCard(
+		'/src/img/tabs/elite.jpg',
+		'test',
+		'THIS IS TEST',
+		'Its real test',
+		1,
+		'.menu__field .container'
+	).render();
+
+
 });
