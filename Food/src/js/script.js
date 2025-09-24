@@ -230,33 +230,46 @@ window.addEventListener('DOMContentLoaded', function () {
 			statusMessage.src = message.loading;
 			btn.append(statusMessage);
 
-			const request = new XMLHttpRequest();
-			request.open('POST', 'server.php');
-			request.setRequestHeader('Contenr-type', 'application/json');
-
 			const formData = new FormData(form);
+
 			const object = {};
 
 			formData.forEach(function (value, key) {
 				object[key] = value;
 			});
 
-			const json = JSON.stringify(object);
-
-			request.send(json);
-
-			request.addEventListener('load', () => {
-				if (request.status === 200) {
-					console.log(request.response);
+			fetch('server1.php', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json'
+				},
+				body: JSON.stringify(object)
+			})
+				.then(data => data.text())
+				.then(data => {
+					console.log(data);
 					showThanksModal(message.succes);
-					form.reset();
 					statusMessage.remove();
 					btn.innerHTML = 'Перезвонить мне';
-				} else {
+				}).catch(() => {
 					showThanksModal(message.failure);
 					btn.innerHTML = 'Перезвонить мне';
-				}
-			});
+				}).finally(() => {
+					form.reset();
+				});
+
+			// request.addEventListener('load', () => {
+			//     if (request.status === 200) {
+			//         console.log(request.response);
+			//         showThanksModal(message.succes);
+			//         form.reset();
+			//         statusMessage.remove();
+			//         btn.innerHTML = 'Перезвонить мне';
+			//     } else {
+			//         showThanksModal(message.failure);
+			//         btn.innerHTML = 'Перезвонить мне';
+			//     }
+			// });
 		});
 	}
 
