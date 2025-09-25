@@ -35,3 +35,15 @@
 // const result = nums.reduce((sum, current) => `${sum}, ${current}`, 3);
 
 // console.log(result);
+
+const obj = {
+	ivan: 'persone',
+	ann: 'persone',
+	dog: 'animal',
+	cat: 'animal'
+};
+
+const arrPersones = Object.entries(obj)
+	.filter(item => item[1] === 'persone')
+	.map(item => item[0]);
+console.log(arrPersones);
