@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	// Timer
 
-	const deadline = '2022-06-11';
+	const deadline = '2026-06-11';
 
 	function getTimeRemaining(endtime) {
 		const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -128,7 +128,7 @@ window.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 
-	const modalTimerId = setTimeout(openModal, 3000);
+	// const modalTimerId = setTimeout(openModal, 3000);
 	// Закомментировал, чтобы не отвлекало
 
 	function showModalByScroll() {
@@ -334,5 +334,138 @@ window.addEventListener('DOMContentLoaded', function () {
 		}, 4000)
 	}
 
-	
+	// slider
+
+	// My slider
+
+	// const slider = document.querySelector('.offer__slider'),
+	// 	sliderPictures = slider.querySelectorAll('.offer__slide'),
+	// 	currentSlide = slider.querySelector('#current'),
+	// 	totalSlide = slider.querySelector('#total');
+
+	// function restartSlider() {
+	// 	sliderPictures.forEach(slide => {
+	// 		slide.classList.add('hide');
+	// 	});
+
+	// 	currentSlide.innerHTML = 1;
+	// 	sliderPictures[0].classList.remove('hide');
+	// 	sliderPictures[0].classList.add('show');
+
+	// 	if (sliderPictures.length < 9) {
+	// 		totalSlide.innerHTML = `0${sliderPictures.length}`;
+	// 	} else {
+	// 		totalSlide.innerHTML = sliderPictures.length;
+	// 	}
+	// }
+
+	// restartSlider();
+
+	// function nextSlide() {
+	// 	const counter = +currentSlide.innerHTML;
+
+	// 	if (counter < 4) {
+	// 		currentSlide.innerHTML = counter + 1;
+
+	// 		sliderPictures[counter - 1].classList.remove('show');
+	// 		sliderPictures[counter - 1].classList.add('hide');
+
+	// 		sliderPictures[counter].classList.add('show');
+	// 		sliderPictures[counter].classList.remove('hide');
+	// 	} else {
+	// 		sliderPictures[counter - 1].classList.remove('show');
+	// 		sliderPictures[counter - 1].classList.add('hide');
+
+	// 		currentSlide.innerHTML = 1;
+
+	// 		sliderPictures[0].classList.add('show');
+	// 		sliderPictures[0].classList.remove('hide');
+	// 	}
+	// }
+
+	// function prevSlide() {
+	// 	const counter = +currentSlide.innerHTML;
+
+	// 	if (counter > 1) {
+	// 		currentSlide.innerHTML = counter - 1;
+
+	// 		sliderPictures[counter - 1].classList.remove('show');
+	// 		sliderPictures[counter - 1].classList.add('hide');
+
+	// 		sliderPictures[counter - 2].classList.add('show');
+	// 		sliderPictures[counter - 2].classList.remove('hide');
+	// 	} else {
+	// 		sliderPictures[counter - 1].classList.remove('show');
+	// 		sliderPictures[counter - 1].classList.add('hide');
+
+	// 		currentSlide.innerHTML = 4;
+	// 		console.log(counter);
+	// 		sliderPictures[sliderPictures.length - 1].classList.add('show');
+	// 		sliderPictures[sliderPictures.length - 1].classList.remove('hide');
+	// 	}
+	// }
+
+	// slider.addEventListener('click', (e) => {
+	// 	// console.log(e);
+	// 	if (e.target.className === 'offer__slider-next' || e.target.alt === 'next') {
+	// 		nextSlide();
+	// 	}
+
+	// 	if (e.target.className === 'offer__slider-prev' || e.target.alt === 'prev') {
+	// 		prevSlide();
+	// 	}
+	// });
+
+	// from lesson
+
+	const slides = document.querySelectorAll('.offer__slide'),
+		next = document.querySelector('.offer__slider-next'),
+		prev = document.querySelector('.offer__slider-prev'),
+		total = document.querySelector('#total'),
+		current = document.querySelector('#current');
+
+	let slideIndex = 1;
+
+	showSlide(slideIndex);
+
+	if (slides.length < 10) {
+		total.textContent = `0${slides.length}`;
+	} else {
+		total.textContent = slides.length;
+	}
+
+	function showSlide(n) {
+		if (n > slides.length) {
+			slideIndex = 1;
+		}
+
+		if (n < 1) {
+			slideIndex = slides.length;
+		}
+
+		slides.forEach(slide => {
+			slide.classList.add('hide');
+			slide.classList.remove('show');
+		});
+
+		slides[slideIndex - 1].classList.add('show');
+
+		if (slides.length < 10) {
+			current.textContent = `0${slideIndex}`;
+		} else {
+			current.textContent = slideIndex;
+		}
+	}
+
+	function plusSlides(n) {
+		showSlide(slideIndex += n);
+	}
+
+	prev.addEventListener('click', (e) => {
+		plusSlides(-1);
+	});
+
+	next.addEventListener('click', () => {
+		plusSlides(1);
+	})
 });
