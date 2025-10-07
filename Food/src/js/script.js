@@ -620,7 +620,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	const result = document.querySelector('.calculating__result span');
 
-	let sex, height, weight, age, ration;
+	let sex = 'female', height, weight, age, ration = 1.375;
 
 	function calcTotal() {
 		if (!sex || !height || !weight || !age || !ration) {
@@ -655,7 +655,7 @@ window.addEventListener('DOMContentLoaded', function () {
 				e.target.classList.add(activeClass);
 				calcTotal();
 			});
-		})
+		});
 	}
 
 	getStatickInformation('#gender', 'calculating__choose-item_active');
