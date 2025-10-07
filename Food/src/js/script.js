@@ -620,7 +620,25 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	const result = document.querySelector('.calculating__result span');
 
-	let sex = 'female', height, weight, age, ration = 1.375;
+	let sex = localStorage.getItem('sex') || (localStorage.setItem('sex', 'female'), 'female'),
+		height,
+		weight,
+		age,
+		ration = +localStorage.getItem('ratio') || (localStorage.setItem('ratio', 1.375), 1.375);
+
+	// if (localStorage.getItem('sex')) {
+	// 	sex = localStorage.getItem('sex');
+	// } else {
+	// 	sex = 'female';
+	// 	localStorage.setItem('sex', 'female');
+	// }
+
+	if (localStorage.getItem('ratio')) {
+		sex = localStorage.getItem('ratio');
+	} else {
+		sex = 1.375;
+		localStorage.setItem('ratio', 1.375);
+	}
 
 	function calcTotal() {
 		if (!sex || !height || !weight || !age || !ration) {
@@ -644,8 +662,10 @@ window.addEventListener('DOMContentLoaded', function () {
 			element.addEventListener('click', (e) => {
 				if (e.target.getAttribute('data-ratio')) {
 					ration = +e.target.getAttribute('data-ratio');
+					localStorage.setItem('ratio', +e.target.getAttribute('data-ratio'));
 				} else {
 					sex = e.target.getAttribute('id');
+					localStorage.setItem('sex', e.target.getAttribute('id'));
 				}
 
 				elements.forEach(element => {
@@ -665,6 +685,12 @@ window.addEventListener('DOMContentLoaded', function () {
 		const input = document.querySelector(selector);
 
 		input.addEventListener('input', () => {
+			if (input.value.match(/\D/g)) {
+				input.style.border = '1px solid red';
+			} else {
+				input.style.border = 'none';
+			}
+
 			switch (input.getAttribute('id')) {
 				case 'height':
 					height = +input.value;
