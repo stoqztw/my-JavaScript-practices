@@ -4,7 +4,7 @@ const app = '123';
 
 const number = 1;
 
-(function(){
+(function () {
 	let number = 2;
 
 	console.log(number);
@@ -13,3 +13,14 @@ const number = 1;
 
 console.log(number);
 
+const user = (function () {
+	const privat = function () {
+		console.log('This function is privat!');
+	};
+
+	return {
+		sayHello: privat
+	};
+}());
+
+user.sayHello(); // This function is privat!
