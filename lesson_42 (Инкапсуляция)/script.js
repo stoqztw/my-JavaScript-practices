@@ -25,11 +25,24 @@ class User {
 			console.log('Недопустимое значение');
 		}
 	}
+
+	get surname() {
+		return this.#surname;
+	}
+
+	set surname(surname) {
+		if (typeof(this.#surname.replace(/ w/g, '')) === 'number') {
+			console.log('Не верное значение')
+		} else {
+			this.#surname = surname;
+		}
+	}
 }
 
 const ivan = new User('Ivan', 27);
-console.log(ivan.age);
-ivan.age = 99;
+console.log(ivan.surname);
+ivan.surname = 'Titova';
 
 // console.log(surname);
 ivan.say();
+
