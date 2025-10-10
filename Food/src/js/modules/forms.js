@@ -98,4 +98,4 @@ function forms() {
 	}
 }
 
-exports.forms = forms;
+module.exports = forms;

@@ -112,4 +112,4 @@ function calculator() {
 	getInputInformation('#age');
 }
 
-exports.calculator = calculator;
+module.exports = calculator;

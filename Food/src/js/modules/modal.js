@@ -1,5 +1,4 @@
 function modal() {
-	// Modal
 
 	const modalTrigger = document.querySelectorAll('[data-modal]'),
 		modal = document.querySelector('.modal');
@@ -43,7 +42,6 @@ function modal() {
 		}
 	}
 	window.addEventListener('scroll', showModalByScroll);
-
 }
 
-exports.modal = modal;
+module.exports = modal;

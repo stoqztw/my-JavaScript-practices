@@ -145,4 +145,4 @@ function slider() {
 	// const dots = document.querySelectorAll('.dot');
 }
 
-exports.slider = slider;
+module.exports = slider;
