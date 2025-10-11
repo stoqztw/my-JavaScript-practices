@@ -7,11 +7,18 @@ module.exports = {
   entry: './src/js/script.js',
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/src/js'
+    path: __dirname + '/src/js',
   },
-  watch: true,
 
   devtool: "source-map",
 
-  module: {}
+  module: {},
+
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    compress: true,
+    port: 9000,
+  },
 };
