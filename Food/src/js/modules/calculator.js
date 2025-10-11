@@ -1,4 +1,4 @@
-function calculator() {
+export default function calculator() {
 	// calculator
 
 	const result = document.querySelector('.calculating__result span');
@@ -111,5 +111,3 @@ function calculator() {
 	getInputInformation('#weight');
 	getInputInformation('#age');
 }
-
-module.exports = calculator;

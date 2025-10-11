@@ -1,5 +1,6 @@
 'use strict';
 
+const { watch } = require('browser-sync');
 let path = require('path');
 
 module.exports = {
@@ -9,16 +10,9 @@ module.exports = {
     filename: 'bundle.js',
     path: __dirname + '/src/js',
   },
+  watch: true,
 
   devtool: "source-map",
 
   module: {},
-
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    compress: true,
-    port: 9000,
-  },
 };
