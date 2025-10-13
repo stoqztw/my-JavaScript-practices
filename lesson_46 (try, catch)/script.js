@@ -2,7 +2,7 @@
 
 try {
 	console.log(a);
-} catch(e) {
+} catch (e) {
 	console.log('error');
 } finally {
 	console.log('final');
